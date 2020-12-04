@@ -5,17 +5,19 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'test_jenkinsFile', url: 'https://github.com/ltem/jenkinsTest.git'
-                
+                sh 'pwd'
+                sh 'ls -l'
             }
         }
         stage('Build') {
             steps {
-                python3 writeTestFile.py
+                sh 'python3 writeTestFile.py'
                 
             }
         }
         stage('Test') {
             steps {
+                sh 'cat ./*'
                 echo 'Test successful'
                 
             }
