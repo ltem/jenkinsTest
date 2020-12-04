@@ -2,9 +2,22 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage('Checkout') {
             steps {
-                echo 'Hello World'
+                git branch: 'test_jenkinsFile', url: 'https://github.com/ltem/jenkinsTest.git'
+                
+            }
+        }
+        stage('Build') {
+            steps {
+                python3 writeTestFile.py
+                
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Test successful'
+                
             }
         }
     }
